@@ -1,9 +1,11 @@
-const { json } = require('express');
+
 const express = require ('express');
 const app = express();
 const fs = require('fs/promises');
 
 const PORT= 5000;
+
+
 
 app
 .use(express.json())
@@ -52,7 +54,7 @@ app.post("/task", async(req, res)=>{
 });
 
 app.delete('/task/:id', async (req,res)=>{
-
+    console.log(req);
     try{
         const id = req.params.id;
         const listBuffer= await fs.readFile('./tasks.json');
@@ -73,4 +75,5 @@ app.delete('/task/:id', async (req,res)=>{
     }
     
 });
+
 app.listen(PORT, () => console.log('Server running on http://localhost:5000'));
