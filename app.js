@@ -13,8 +13,8 @@ app
 .use((req, res, next)=>{
     res.header('Acces-Control-Allow-Origin', '*');
     res.header('Acces-Controll-Allow-Headers', '*');
-    res.header('Access-Controll-Allow-Method', '*');
-    
+    res.header('Access-Control-Allow-Methods', '*');
+   
     next();
     });
     
