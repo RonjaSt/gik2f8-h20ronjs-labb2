@@ -11,14 +11,14 @@ app
 .use(express.json())
 .use(express.urlencoded({extended:false}))
 .use((req, res, next)=>{
-    res.header('Acces-Control-Allow-Origin', '*');
-    res.header('Acces-Controll-Allow-Headers', '*');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
     res.header('Access-Control-Allow-Methods', '*');
-   
-    next();
+    
+    next( );
     });
     
-app.get('/task',async (req, res)=>{
+app.get('/tasks',async (req, res)=>{
     try{
         const tasks = await fs.readFile('./tasks.json');
         res.send(JSON.parse(tasks));
@@ -29,7 +29,7 @@ app.get('/task',async (req, res)=>{
 
 
 
-app.post("/task", async(req, res)=>{
+app.post("/tasks", async(req, res)=>{
   try{
         const task=req.body;
 
@@ -53,7 +53,7 @@ app.post("/task", async(req, res)=>{
     }  
 });
 
-app.delete('/task/:id', async (req,res)=>{
+app.delete('/tasks/:id', async (req,res)=>{
     console.log(req);
     try{
         const id = req.params.id;
