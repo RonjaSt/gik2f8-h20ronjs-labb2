@@ -225,9 +225,13 @@ function renderTask({ id, title, description, dueDate }) {
         <div>
           <span>${dueDate}</span>
           <button onclick="deleteTask(${id})" class="inline-block bg-blue-500 text-xs text-blue-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>
-        </div>
+          <input type="checkbox" onclick="taskDone(${id})" class="inline-block bg-blue-200 rounded-"
+          </div>
       </div>`;
 
+
+     
+  
   /* Här har templatesträngen avslutats tillfälligt för att jag bara vill skriva ut kommande del av koden om description faktiskt finns */
 
   description &&
@@ -267,6 +271,13 @@ function deleteTask(id) {
   
 Funktionen bör ta emot ett id som skickas från <li>-elementet.
 */
+function taskDone(id){
+  api.check(id).then((result) =>{
+    console.log('uppgift markerad färdig')
+    renderList()
+  });
+}
+
 
 /* Inuti funktionen kan ett objekt skickas till api-metoden update. Objektet ska som minst innehålla id på den uppgift som ska förändras, samt egenskapen completed som true eller false, beroende på om uppgiften markerades som färdig eller ofärdig i gränssnittet. 
 
