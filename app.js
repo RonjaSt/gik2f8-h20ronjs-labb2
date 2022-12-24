@@ -74,22 +74,26 @@ app.delete('/tasks/:id', async (req,res)=>{
         res.status(500).send({error: error.stack});
     }
     
-});§
+});
 
 app.patch('/tasks/:id', async(req, res)=>{
     console.log(req);
     try{
         const id= req.params.id;
+        const done= req.body.completed;
+        console.log(done)
         const listBuffer= await fs.readFile('./tasks.json');
-        const currrentTasks= JSON.parse(listbuffer);
+        const currrentTasks= JSON.parse(listBuffer);
+        
+        const checkId= currrentTasks.filter((task)=> task.id ==id);
+        const getRest= currrentTasks.filter((task)=> task.id !=id);
+        checkId.completed= done;
 
-        if(currentTasks.length>0){
-            await fs.writeFile(
-                '.tasks.json', JSON.stringify(currentTasks.filter((task)=> task.id !=id)));
-                res.send({message: `uppgift med id ${id} markerades som färdig`});
-        }
+        const newList =[...getRest, checkId]
 
-    
+        await fs.writeFile(
+            './tasks.json', JSON.stringify(newList));
+            res.send(newList);
     }catch(error){
         res.status(500).send({error: error.stack});
     }

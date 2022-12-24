@@ -76,14 +76,26 @@ class Api {
     
     Beroende på om ni gör frontend eller backend först i labben behöver ni på något av ställena bestämma er för en av metoderna PUT eller PATCH för denna förfrågan. (Du får välja själv, läs på om vad som verkar mest vettigt för din lösning). Använder du metoden PATCH här behöver i alla fall det vara patch som tas emot i servern också, app.patch(...), och vice versa om du väljer PUT. 
     */
-    check(id) {
-      /* I detta fetch-anrop behövs inga särskilda inställningar. Fetch kan ta bara url:en som parameter också, istället för att man skapar ett helt request-objekt och skickar in det. */
-      return fetch(`${this.url}/${id}`,{
-        method:'PATCH'
-      })
+    check(id, completed) {
+     console.log("är i api")
+      const checkStatus= {"id":id, "completed":completed};
+      const JSONData = JSON.stringify(checkStatus);
+
+      const request = new Request(`${this.url}/${id}`,{
+        method: 'PATCH',
+        body: JSONData,
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+      return (
+        fetch(request)
         .then((result) => result.json())
         .then((data) => data)
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+      );
+        
+       
     }
   
     /*   
