@@ -77,7 +77,7 @@ app.delete('/tasks/:id', async (req,res)=>{
 });
 
 app.patch('/tasks/:id', async(req, res)=>{
-    console.log(req);
+    
     try{
         const id= req.params.id;
         const done= req.body.completed;
@@ -85,10 +85,10 @@ app.patch('/tasks/:id', async(req, res)=>{
         const listBuffer= await fs.readFile('./tasks.json');
         const currrentTasks= JSON.parse(listBuffer);
         
-        const checkId= currrentTasks.filter((task)=> task.id ==id);
+        const checkId= currrentTasks.filter((task)=> task.id ==id)[0];
         const getRest= currrentTasks.filter((task)=> task.id !=id);
         checkId.completed= done;
-
+        console.log(checkId)
         const newList =[...getRest, checkId]
 
         await fs.writeFile(
