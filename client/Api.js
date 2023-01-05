@@ -95,8 +95,25 @@ class Api {
         .catch((err) => console.log(err))
       );
         
-       
+      
     }
+    sort(dueDate){
+      const request = new Request(`${this.url}/${dueDate}`,{
+        method: 'PATCH',
+        body: JSONData,
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+        
+      return (
+      fetch(`${this.url}/${dueDate}`,)
+      .then((result) => result.json())
+      .then((data) => data)
+      .catch((err) => console.log(err)));
+    
+  }
+      
   
     /*   
     För att utföra en förfrågan med hjälp av fetch() behöver servern veta några saker om förfrågan (request). Först och främst behövs en url dit förfrågan ska skickas, sedan behövs också ett objekt med inställningar och detaljer om förfrågan, detta objekt kallas vidare "{options}". Url och {options} kan sättas antingen i ett requestobjekts konstruktor; new Request(url, {options}), såsom det görs i create-metoden. Eller så skulle man kunna ange allt som annars skulle ha skickats till Request-objektets konstruktor inom parenteserna hos fetch() istället; fetch(url, {options})
