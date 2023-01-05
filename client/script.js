@@ -277,11 +277,12 @@ function deleteTask(id) {
 Funktionen bör ta emot ett id som skickas från <li>-elementet.
 */
 function taskDone(id, completed){
-  console.log("taskdone")
+  
   api.check(id, completed).then((result) =>{
-    console.log('uppgift markerad färdig')
+   
     renderList()
   });
+  
 }
 
 
