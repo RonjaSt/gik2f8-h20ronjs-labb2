@@ -278,7 +278,10 @@ function deleteTask(id) {
 Funktionen bör ta emot ett id som skickas från <li>-elementet.
 */
 function taskDone(id, completed){
+<<<<<<< HEAD
   
+=======
+>>>>>>> parent of 16e4994 (ändringar efter hjälp)
   api.check(id, completed).then((result) =>{
    
     renderList()
