@@ -1,16 +1,1 @@
-[
-  {
-    "id": 2,
-    "title": "lektion",
-    "description": "",
-    "dueDate": "2023-01-03",
-    "completed": true
-  },
-  {
-    "id": 4,
-    "title": "gör något",
-    "description": "",
-    "dueDate": "2023-01-01",
-    "completed": true
-  }
-]
+[{"id":7,"title":"labb2","description":"Göra klart labb2","dueDate":"2022-11-01","completed":true},{"id":6,"title":"Potatis","description":"","dueDate":"2022-11-08","completed":true},{"id":5,"title":"spela ow","description":"med syrran","dueDate":"2023-01-02","completed":true},{"id":2,"title":"lektion","description":"","dueDate":"2023-01-03","completed":true}]

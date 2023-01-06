@@ -97,22 +97,7 @@ class Api {
         
       
     }
-    sort(dueDate){
-      const request = new Request(`${this.url}/${dueDate}`,{
-        method: 'PATCH',
-        body: JSONData,
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
-        
-      return (
-      fetch(`${this.url}/${dueDate}`,)
-      .then((result) => result.json())
-      .then((data) => data)
-      .catch((err) => console.log(err)));
     
-  }
       
   
     /*   

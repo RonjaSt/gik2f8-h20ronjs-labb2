@@ -17,10 +17,18 @@ app
     
     next( );
     });
-    
+    function sortList(list){
+        list.sort(function(a,b){
+            console.log("sorting");
+            return a.dueDate.localeCompare(b.dueDate);
+            
+        });
+        
+     }
 app.get('/tasks',async (req, res)=>{
     try{
         const tasks = await fs.readFile('./tasks.json');
+        
         res.send(JSON.parse(tasks));
     }catch(error){
         res.status(500).send({error});
@@ -42,10 +50,11 @@ app.post("/tasks", async(req, res)=>{
 
            
         }
+       
         const newTask = {id :maxTaskId + 1, ...task};
         const newList =currentTasks ? [...currentTasks, newTask] : [newTask];
         
-        
+        sortList(newList);
         await fs.writeFile('./tasks.json',JSON.stringify(newList));
         res.send(newTask);
     } catch(error){
@@ -85,13 +94,13 @@ app.patch('/tasks/:id', async(req, res)=>{
         const listBuffer= await fs.readFile('./tasks.json');
         const currrentTasks= JSON.parse(listBuffer);
         
-        const checkId= currrentTasks.filter((task)=> task.id ==id);
+        const checkId= currrentTasks.filter((task)=> task.id ==id)[0];
         const getRest= currrentTasks.filter((task)=> task.id !=id);
         checkId.completed= done;
-
+        console.log(checkId)
         const newList =[...getRest, checkId]
-       
-
+        
+        sortList(newList);
         await fs.writeFile(
             './tasks.json', JSON.stringify(newList));
             res.send(newList);

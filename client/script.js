@@ -230,13 +230,12 @@ function renderTask({ id, title, description, dueDate, completed}) {
         <div>
           <span>${dueDate}</span>
           <button onclick="deleteTask(${id})" class="inline-block bg-blue-500 text-xs text-blue-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>
-          <button onclick="sortTasks(${dueDate})" class="inline-block bg-blue-500 text-xs text-blue-900 border border-white px-3 py-1 rounded-md ml-2">Sortera</button>
-          <input type="checkbox" onclick="taskDone(${id}, ${!completed})" ${checked} class="inline-block bg-blue-200 rounded-md " >
+          
+          <input id="check" type="checkbox" onclick="taskDone(${id}, ${!completed})" ${checked} class="inline-block bg-blue-200 rounded-md " >
           </div>
       </div>`;
 
 
-     
   
   /* Här har templatesträngen avslutats tillfälligt för att jag bara vill skriva ut kommande del av koden om description faktiskt finns */
 
@@ -285,12 +284,7 @@ function taskDone(id, completed){
 }
 
 
-function sortTasks(dueDate){
-  api.sort(dueDate).then((result)=>{
-    renderList()
 
-  });
-}
 /* Inuti funktionen kan ett objekt skickas till api-metoden update. Objektet ska som minst innehålla id på den uppgift som ska förändras, samt egenskapen completed som true eller false, beroende på om uppgiften markerades som färdig eller ofärdig i gränssnittet. 
 
 Det finns några sätt att utforma det som ska skickas till api.update-metoden. 1
