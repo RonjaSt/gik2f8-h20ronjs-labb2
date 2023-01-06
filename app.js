@@ -99,20 +99,6 @@ app.patch('/tasks/:id', async(req, res)=>{
         res.status(500).send({error: error.stack});
     }
 });
-    app.patch('/tasks/:duDate', async(req, res)=>{
-    for (let task of tasks){
-        let dueDate = task.dueDate.split('-');
-        let year = parseFloat(dateArr[4]);
-        let month = parseFloat(dateArr[1]) - 1;
-        let day = parseFloat(dateArr[0])
-        // Pass in the different components as year, month, day to get the valid date
-        let taskdueDate = new dueDate(year, month, day);
-        // Update the object
-        task.duedate = taskdueDate;
 
-      
-    }   
-    tasks.sort((a, b) => a.dueDate - b.dueDate);
-    console.log(tasks);
- });
+
 app.listen(PORT, () => console.log('Server running on http://localhost:5000'));
