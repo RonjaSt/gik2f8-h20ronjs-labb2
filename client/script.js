@@ -213,6 +213,7 @@ function renderTask({ id, title, description, dueDate, completed}) {
 
   let checked = "";
   if(completed){
+ 
     checked= "checked"
     
   }
@@ -249,7 +250,7 @@ function renderTask({ id, title, description, dueDate, completed}) {
       <p class="ml-8 mt-2 text-xs italic">${description}</p>
   `);
 
-
+  
   /* När html-strängen eventuellt har byggts på med HTML-kod för description-egenskapen läggs till sist en sträng motsvarande sluttaggen för <li>-elementet dit. */
   html += `
     </li>`;
@@ -258,7 +259,20 @@ function renderTask({ id, title, description, dueDate, completed}) {
   /***********************Labb 2 ***********************/
   /* I ovanstående template-sträng skulle det vara lämpligt att sätta en checkbox, eller ett annat element som någon kan klicka på för att markera en uppgift som färdig. Det elementet bör, likt knappen för delete, också lyssna efter ett event (om du använder en checkbox, kolla på exempelvis w3schools vilket element som triggas hos en checkbox när dess värde förändras.). Skapa en eventlyssnare till det event du finner lämpligt. Funktionen behöver nog ta emot ett id, så den vet vilken uppgift som ska markeras som färdig. Det skulle kunna vara ett checkbox-element som har attributet on[event]="updateTask(id)". */
   /***********************Labb 2 ***********************/
-
+  if(completed){
+  let html =`    
+  <li class="select-none mt-2 py-2 border-b border-blue-300">
+  <div class="flex items-center">
+    <h3 id="name"class="mb-3 flex-1 text-xl font-bold text-zinc-800 uppercase">${title}</h3>
+    <div>
+      <span>${dueDate}</span>
+      <button onclick="deleteTask(${id})" class="inline-block bg-blue-500 text-xs text-blue-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>
+      
+      <input id="check" type="checkbox" onclick="taskDone(${id}, ${!completed})" ${checked} class="inline-block bg-blue-200 rounded-md " >
+      </div>
+  </div>`;
+  return html;}
+  
   /* html-variabeln returneras ur funktionen och kommer att vara den som sätts som andra argument i todoListElement.insertAdjacentHTML("beforeend", renderTask(task)) */
   return html;
 
